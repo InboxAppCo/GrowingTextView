@@ -28,7 +28,7 @@
 #import "HPGrowingTextView.h"
 #import "HPTextViewInternal.h"
 
-@interface HPGrowingTextView(private)
+@interface HPGrowingTextView(private) <HPTextViewInternalDelegate>
 -(void)commonInitialiser;
 -(void)resizeTextView:(NSInteger)newSizeH;
 -(void)growDidStop;
@@ -94,6 +94,7 @@
     internalTextView = [[HPTextViewInternal alloc] initWithFrame:r];
 #endif
     internalTextView.delegate = self;
+    internalTextView.internalDelegate = self;
     internalTextView.scrollEnabled = NO;
     internalTextView.font = [UIFont fontWithName:@"Helvetica" size:13]; 
     internalTextView.contentInset = UIEdgeInsetsZero;		
@@ -661,6 +662,10 @@
 	}
 }
 
-
+- (void)textViewDidBecomeFirstResponder:(HPTextViewInternal *)textView {
+    if ([delegate respondsToSelector:@selector(growingTextViewDidBecomeFirstResponder:)]) {
+        [delegate growingTextViewDidBecomeFirstResponder:self];
+    }
+}
 
 @end

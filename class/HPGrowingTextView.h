@@ -53,6 +53,8 @@
 
 - (void)growingTextViewDidChangeSelection:(HPGrowingTextView *)growingTextView;
 - (BOOL)growingTextViewShouldReturn:(HPGrowingTextView *)growingTextView;
+
+- (void)growingTextViewDidBecomeFirstResponder:(HPGrowingTextView *)growingTextView;
 @end
 
 @interface HPGrowingTextView : UIView <UITextViewDelegate> {

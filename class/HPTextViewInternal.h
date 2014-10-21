@@ -27,11 +27,21 @@
 
 #import <UIKit/UIKit.h>
 
+@class HPTextViewInternal;
+
+@protocol HPTextViewInternalDelegate
+
+@optional
+
+- (void)textViewDidBecomeFirstResponder:(HPTextViewInternal *)textView;
+
+@end
 
 @interface HPTextViewInternal : UITextView
 
 @property (nonatomic, strong) NSString *placeholder;
 @property (nonatomic, strong) UIColor *placeholderColor;
 @property (nonatomic) BOOL displayPlaceHolder;
+@property (nonatomic, weak) NSObject<HPTextViewInternalDelegate> *internalDelegate;
 
 @end

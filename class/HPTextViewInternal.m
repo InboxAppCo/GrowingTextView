@@ -123,4 +123,14 @@
 	[self setNeedsDisplay];
 }
 
+- (BOOL)becomeFirstResponder {
+    BOOL returnValue = [super becomeFirstResponder];
+    if (returnValue) {
+        if ([self.internalDelegate respondsToSelector:@selector(textViewDidBecomeFirstResponder:)]) {
+            [self.delegate performSelector:@selector(textViewDidBecomeFirstResponder:) withObject:self];
+        }
+    }
+    return returnValue;
+}
+
 @end
